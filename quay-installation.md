@@ -91,8 +91,8 @@ RemainAfterExit=true
 User=root
 Group=root
 
-ExecStartPre=/usr/bin/docker run --restart=always -name quay-redis -d -p 6379:6379 quay.io/quay/redis
-ExecStart=/usr/bin/docker run --restart=always -name quay-enterprise -p 443:443 -p 80:80 -p 8443:8443 --privileged=true -v /config:/conf/stack -v /storage:/datastorage -d quay.io/coreos/quay
+ExecStartPre=/usr/bin/docker run --restart=always --name quay-redis -d -p 6379:6379 quay.io/quay/redis
+ExecStart=/usr/bin/docker run --restart=always --name quay-enterprise -p 443:443 -p 80:80 -p 8443:8443 --privileged=true -v /config:/conf/stack -v /storage:/datastorage -d quay.io/coreos/quay:v2.6.1
 
 ExecStopPost=/usr/bin/docker stop quay-redis
 ExecStopPost=/usr/bin/docker rm quay-redis
